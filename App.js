@@ -6,6 +6,11 @@ import middleware from "./src/middleware";
 import { reducer } from "./src/reducers";
 import { Provider } from "react-redux";
 import Home from "./src/views/Home";
+import DeckDetail from "./src/views/DeckDetail";
+import { defaultNavOptions } from "./src/styles";
+import AddDeck from "./src/views/AddDeck";
+import AddCard from "./src/views/AddCard";
+import Quiz from "./src/views/Quiz";
 
 const store = createStore(reducer, composeWithDevTools(middleware));
 
@@ -13,15 +18,31 @@ const Navigator = createStackNavigator(
   {
     Home: {
       screen: Home,
+      navigationOptions: { title: "My Decks", ...defaultNavOptions }
+    },
+    Deck: {
+      screen: DeckDetail,
+      navigationOptions: defaultNavOptions
+    },
+    AddDeck: {
+      screen: AddDeck,
       navigationOptions: {
-        title: "My Decks",
-        headerStyle: {
-          backgroundColor: "#f4511e"
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold"
-        }
+        title: "Add new Deck",
+        ...defaultNavOptions
+      }
+    },
+    AddCard: {
+      screen: AddCard,
+      navigationOptions: {
+        title: "Add new Card",
+        ...defaultNavOptions
+      }
+    },
+    Quiz: {
+      screen: Quiz,
+      navigationOptions: {
+        title: "Quiz",
+        ...defaultNavOptions
       }
     }
   },
@@ -35,13 +56,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator/>
+        <AppNavigator />
       </Provider>
     );
   }
 }
-
-
-
-
-

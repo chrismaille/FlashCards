@@ -1,6 +1,7 @@
 module.exports = {
   parser: "babel-eslint",
   env: {
+    node: true,
     browser: true,
     es6: true
   },
@@ -8,8 +9,8 @@ module.exports = {
     "expo",
     "airbnb",
     "prettier",
-    "react-app",
-    "plugin:prettier/recommended"
+    "prettier/react",
+    "react-native"
   ],
   plugins: ["prettier"],
   rules: {

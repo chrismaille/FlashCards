@@ -4,7 +4,7 @@ import React from "react";
 import DeckList from "./DeckList";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
-import styles from "../Styles";
+import { appStyles } from "../styles";
 
 class Home extends React.Component {
   state = {
@@ -22,8 +22,8 @@ class Home extends React.Component {
   render() {
     const { isLoading } = this.state;
     return (
-      <View style={styles.container}>
-        {isLoading ? <AppLoading autoHideSplash={false}/> : <DeckList/>}
+      <View style={appStyles.container}>
+        {isLoading ? <AppLoading autoHideSplash={false} /> : <DeckList />}
       </View>
     );
   }

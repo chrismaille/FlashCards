@@ -1,21 +1,32 @@
-import { FlatList, View } from "react-native";
-import React, { Component } from "react";
+import { FlatList } from "react-native";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import styles from "../Styles";
 import _ from "lodash";
-import Deck from "../components/Deck";
+import DeckButton from "../components/DeckButton";
+import { Button } from "react-native";
+import { withNavigation } from "react-navigation";
 
 class DeckList extends Component {
-  renderItem = ({ item }) => (
-    <Deck key={item.title.toLowerCase()} deck={item}/>
-  );
+  renderItem = ({ item }) => <DeckButton deck={item} />;
 
   render() {
     const { decks } = this.props;
     return (
-      <View style={styles.container}>
-        <FlatList data={decks} renderItem={this.renderItem}/>
-      </View>
+      <Fragment>
+        <FlatList
+          data={decks}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.title.toLowerCase()}
+        />
+        <Button
+          onPress={() => {
+            this.props.navigation.navigate("AddDeck");
+          }}
+          title="Add new Deck"
+          color="#841584"
+          accessibilityLabel="Add new quiz deck for you collection"
+        />
+      </Fragment>
     );
   }
 }
@@ -25,4 +36,4 @@ const mapStateToProps = ({ decks }) => {
     decks: _.values(decks)
   };
 };
-export default connect(mapStateToProps)(DeckList);
+export default withNavigation(connect(mapStateToProps)(DeckList));
