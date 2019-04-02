@@ -3,7 +3,7 @@ import { View } from "react-native";
 import React from "react";
 import DeckList from "./DeckList";
 import { connect } from "react-redux";
-import { handleInitialData } from "../actions/shared";
+import { handleInitialData } from "../actions/decks";
 import { appStyles } from "../styles";
 
 class Home extends React.Component {

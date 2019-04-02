@@ -1,9 +1,17 @@
 import React from "react";
 import { Card } from "../styles/Card";
-import PercentageCircle from "react-native-percentage-circle";
-import { Text, View } from "react-native";
-import { Question } from "../styles/Question";
+import { View } from "react-native";
+import { Answer, Question } from "../styles/Question";
 import { connect } from "react-redux";
+import { QuizProgress } from "../components/QuizProgress";
+import styled from "styled-components/native";
+import { AppButton } from "../styles/AppButton";
+
+const QuizAnswer = styled.View`
+  flex: 1;
+  height: auto;
+  padding: 12px;
+`;
 
 class Quiz extends React.Component {
   state = {
@@ -13,28 +21,46 @@ class Quiz extends React.Component {
 
   render() {
     const { deck } = this.props;
-    const { index } = this.state;
+    const { index, showAnswer } = this.state;
     const allQuestions = deck.questions.length;
     const currentQuestion = index + 1;
     return (
       <Card>
-        <View>
-          <PercentageCircle
-            radius={35}
-            percent={(currentQuestion / allQuestions) * 100}
-            color={"#3498db"}
-            innerColor={"orange"}
-            borderWidth={2}
-            disabled={false}
-            textStyle={{}}
-          >
-            <Text>
-              {currentQuestion}/{allQuestions}
-            </Text>
-          </PercentageCircle>
-        </View>
-        <View>
+        <QuizProgress current={currentQuestion} total={allQuestions} />
+        <View style={{ flex: 1, alignItems: "center" }}>
           <Question>{deck.questions[index].question}</Question>
+          {showAnswer ? (
+            <QuizAnswer>
+              <Answer>{deck.questions[index].answer}</Answer>
+              <AppButton
+                style={{ backgroundColor: "lightgreen" }}
+                onPress={() => {}}
+              >
+                Correct!
+              </AppButton>
+              <AppButton style={{ backgroundColor: "red" }} onPress={() => {}}>
+                Incorrect!
+              </AppButton>
+            </QuizAnswer>
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                padding: 8,
+                justifyContent: "center",
+                width: "100%"
+              }}
+            >
+              <AppButton
+                style={{ backgroundColor: "lightblue" }}
+                onPress={() => {
+                  this.setState({ showAnswer: true });
+                }}
+              >
+                Show Answer
+              </AppButton>
+            </View>
+          )}
         </View>
       </Card>
     );

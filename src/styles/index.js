@@ -17,7 +17,10 @@ export const appStyles = StyleSheet.create({
     color: "white",
     fontSize: 120
   },
-  submitBtn: { backgroundColor: "#5bb0f4", margin: 20 }
+  submitBtn: {
+    backgroundColor: "#5bb0f4",
+    margin: 18
+  }
 });
 
 export const defaultNavOptions = {

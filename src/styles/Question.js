@@ -7,3 +7,12 @@ export const Question = styled.Text`
   text-align: center;
   padding: 30px;
 `;
+
+//noinspection CssInvalidPropertyValue
+export const Answer = styled.Text`
+  font-size: 24;
+  color: indigo;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 24px;
+`;

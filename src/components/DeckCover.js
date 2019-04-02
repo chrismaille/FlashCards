@@ -29,7 +29,11 @@ class DeckCover extends React.Component {
         </View>
         <View style={{ marginTop: 18 }}>
           <Button onPress={this.onPressNewCard} title={"Add new Card"} />
-          <Button onPress={this.onPressQuiz} title={"Start Quiz"} />
+          <Button
+            disabled={deck.questions.length === 0}
+            onPress={this.onPressQuiz}
+            title={"Start Quiz"}
+          />
         </View>
       </Card>
     );

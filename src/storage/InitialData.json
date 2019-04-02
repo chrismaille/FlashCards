@@ -1,5 +1,5 @@
 {
-  "React": {
+  "react": {
     "title": "React",
     "questions": [
       {
@@ -12,7 +12,7 @@
       }
     ]
   },
-  "JavaScript": {
+  "javaScript": {
     "title": "JavaScript",
     "questions": [
       {

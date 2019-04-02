@@ -9,7 +9,17 @@ export const getInitialData = async () => {
   );
   if (!storageData) {
     console.log("Storage not found. Using default data...");
+    await SaveStorage(defaultData);
     return defaultData;
   }
+  console.log("Using data saved in Store");
   return storageData;
+};
+
+export const SaveStorage = async currentData => {
+  console.log("New storage:", currentData);
+  return await AsyncStorage.setItem(
+    DECKS_STORAGE_KEY,
+    JSON.stringify(currentData)
+  );
 };

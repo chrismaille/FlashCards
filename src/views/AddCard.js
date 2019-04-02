@@ -4,7 +4,7 @@ import { Question } from "../styles/Question";
 import { Answer } from "../styles/Answer";
 import React from "react";
 import { Card } from "../styles/Card";
-import Button from "apsl-react-native-button";
+import { AppButton } from "../styles/AppButton";
 
 class AddCard extends React.Component {
   render() {
@@ -18,9 +18,7 @@ class AddCard extends React.Component {
           />
           <Question>Answer:</Question>
           <Answer placeholder={"Enter question's answer"} />
-          <Button style={appStyles.submitBtn} textStyle={{ fontSize: 18 }}>
-            Submit
-          </Button>
+          <AppButton style={appStyles.submitBtn}>Submit</AppButton>
         </Card>
       </KeyboardAvoidingView>
     );
