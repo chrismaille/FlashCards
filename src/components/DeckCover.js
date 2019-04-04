@@ -2,14 +2,15 @@ import React from "react";
 import { Button, View } from "react-native";
 import { DeckTitle } from "./DeckTitle";
 import { DeckLogo } from "./DeckLogo";
-import { DeckSize } from "./DeckSize";
+import DeckSize from "./DeckSize";
 import { Card } from "../styles/Card";
 import { withNavigation } from "react-navigation";
 
 class DeckCover extends React.Component {
   onPressNewCard = e => {
     e.preventDefault();
-    this.props.navigation.navigate("AddCard");
+    const { deck } = this.props;
+    this.props.navigation.navigate("AddCard", { deck });
   };
 
   onPressQuiz = e => {

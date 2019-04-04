@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
 import { DeckTitle } from "./DeckTitle";
-import { DeckSize } from "./DeckSize";
+import DeckSize from "./DeckSize";
 // noinspection ES6CheckImport
 import Swipeout from "react-native-swipeout";
 import { Frame } from "../styles/Frame";

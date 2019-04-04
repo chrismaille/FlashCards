@@ -1,7 +1,7 @@
 import { AsyncStorage } from "react-native";
 import defaultData from "./InitialData.json";
 
-export const DECKS_STORAGE_KEY = "FlashCards:decks";
+export const DECKS_STORAGE_KEY = "FlashCards:allDecks";
 
 export const getInitialData = async () => {
   const storageData = await AsyncStorage.getItem(DECKS_STORAGE_KEY, null).then(
@@ -13,6 +13,7 @@ export const getInitialData = async () => {
     return defaultData;
   }
   console.log("Using data saved in Store");
+  console.log(storageData);
   return storageData;
 };
 
