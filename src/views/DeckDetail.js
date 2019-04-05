@@ -27,7 +27,6 @@ class DeckDetail extends Component {
 
   render() {
     const { deck } = this.props;
-    console.log(deck);
     return (
       <View style={appStyles.container}>
         <Card>

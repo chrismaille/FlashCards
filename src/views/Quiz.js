@@ -1,74 +1,77 @@
 import React from "react";
 import { Card } from "../styles/Card";
-import { View } from "react-native";
-import { Answer, Question } from "../styles/Question";
 import { connect } from "react-redux";
 import { QuizProgress } from "../components/QuizProgress";
-import styled from "styled-components/native";
-import { AppButton } from "../styles/AppButton";
-
-const QuizAnswer = styled.View`
-  flex: 1;
-  height: auto;
-  padding: 12px;
-`;
+import QuizResult from "../components/QuizResult";
 
 class Quiz extends React.Component {
   state = {
     index: 0,
-    showAnswer: false
+    showAnswer: false,
+    score: 0,
+    quizFinished: false
+  };
+
+  handlePressCorrect = () => {
+    const { deck } = this.props;
+    const newIndex = this.state.index + 1;
+    const newScore = this.state.score + 1;
+    const allQuestions = deck.questions.length;
+
+    this.setState({
+      showAnswer: false,
+      index: newIndex,
+      score: newScore,
+      quizFinished: newIndex === allQuestions
+    });
+  };
+
+  handlePressIncorrect = () => {
+    const { deck } = this.props;
+    const newIndex = this.state.index + 1;
+    const allQuestions = deck.questions.length;
+
+    this.setState({
+      showAnswer: false,
+      index: newIndex,
+      quizFinished: newIndex === allQuestions
+    });
+  };
+
+  handlePressShowAnswer = () => {
+    this.setState({ showAnswer: true });
   };
 
   render() {
     const { deck } = this.props;
-    const { index, showAnswer } = this.state;
+    const { index, showAnswer, quizFinished, score } = this.state;
     const allQuestions = deck.questions.length;
     const currentQuestion = index + 1;
     return (
       <Card>
-        <QuizProgress current={currentQuestion} total={allQuestions} />
-        <View style={{ flex: 1, alignItems: "center" }}>
-          <Question>{deck.questions[index].question}</Question>
-          {showAnswer ? (
-            <QuizAnswer>
-              <Answer>{deck.questions[index].answer}</Answer>
-              <AppButton
-                style={{ backgroundColor: "lightgreen" }}
-                onPress={() => {}}
-              >
-                Correct!
-              </AppButton>
-              <AppButton style={{ backgroundColor: "red" }} onPress={() => {}}>
-                Incorrect!
-              </AppButton>
-            </QuizAnswer>
-          ) : (
-            <View
-              style={{
-                flex: 1,
-                padding: 8,
-                justifyContent: "center",
-                width: "100%"
-              }}
-            >
-              <AppButton
-                style={{ backgroundColor: "lightblue" }}
-                onPress={() => {
-                  this.setState({ showAnswer: true });
-                }}
-              >
-                Show Answer
-              </AppButton>
-            </View>
-          )}
-        </View>
+        {quizFinished ? (
+          <QuizResult score={score} />
+        ) : (
+          <QuizProgress
+            question={deck.questions[index].question}
+            answer={deck.questions[index].answer}
+            current={currentQuestion}
+            total={allQuestions}
+            showAnswer={showAnswer}
+            onPressShowAnswer={this.handlePressShowAnswer}
+            onPressCorrect={this.handlePressCorrect}
+            onPressIncorrect={this.handlePressIncorrect}
+          />
+        )}
       </Card>
     );
   }
 }
+
 const mapStateToProps = ({}, ownProps) => {
+  const deck = ownProps.navigation.getParam("deck");
   return {
-    deck: ownProps.navigation.getParam("deck")
+    deck
   };
 };
 export default connect(mapStateToProps)(Quiz);

@@ -11,6 +11,7 @@ import { defaultNavOptions } from "./src/styles";
 import AddDeck from "./src/views/AddDeck";
 import AddCard from "./src/views/AddCard";
 import Quiz from "./src/views/Quiz";
+import QuizResult from "./src/components/QuizResult";
 
 const store = createStore(reducer, composeWithDevTools(middleware));
 
@@ -42,6 +43,13 @@ const Navigator = createStackNavigator(
       screen: Quiz,
       navigationOptions: {
         title: "Quiz",
+        ...defaultNavOptions
+      }
+    },
+    QuizResult: {
+      screen: QuizResult,
+      navigationOptions: {
+        title: "Your Result",
         ...defaultNavOptions
       }
     }
