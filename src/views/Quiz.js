@@ -42,6 +42,15 @@ class Quiz extends React.Component {
     this.setState({ showAnswer: true });
   };
 
+  handlePressRestart = () => {
+    this.setState({
+      index: 0,
+      showAnswer: false,
+      score: 0,
+      quizFinished: false
+    });
+  };
+
   render() {
     const { deck } = this.props;
     const { index, showAnswer, quizFinished, score } = this.state;
@@ -50,7 +59,11 @@ class Quiz extends React.Component {
     return (
       <Card>
         {quizFinished ? (
-          <QuizResult score={score} />
+          <QuizResult
+            score={score}
+            deck={deck}
+            onPressRestart={this.handlePressRestart}
+          />
         ) : (
           <QuizProgress
             question={deck.questions[index].question}
