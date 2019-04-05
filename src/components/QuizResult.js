@@ -1,6 +1,5 @@
-import { Card } from "../styles/Card";
+import React, { Fragment } from "react";
 import { Button, View } from "react-native";
-import React, { Component } from "react";
 import styled from "styled-components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { appStyles } from "../styles";
@@ -15,7 +14,7 @@ export const QuizAnswer = styled.View`
   padding: 12px;
 `;
 
-class QuizResult extends Component {
+class QuizResult extends React.Component {
   onPressBack = () => {
     const { navigation } = this.props;
     navigation.goBack();
@@ -43,7 +42,7 @@ class QuizResult extends Component {
   render() {
     const { onPressRestart } = this.props;
     return (
-      <Card>
+      <Fragment>
         <View style={{ flex: 1, alignItems: "center" }}>
           <MaterialCommunityIcons
             style={appStyles.largeIcon}
@@ -55,7 +54,7 @@ class QuizResult extends Component {
             <Button onPress={this.onPressBack} title={"Back to Deck"} />
           </View>
         </View>
-      </Card>
+      </Fragment>
     );
   }
 }
