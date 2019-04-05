@@ -1,9 +1,8 @@
-import { FlatList } from "react-native";
+import { Button, FlatList } from "react-native";
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import DeckButton from "../components/DeckButton";
-import { Button } from "react-native";
 import { withNavigation } from "react-navigation";
 
 class DeckList extends Component {
@@ -32,8 +31,10 @@ class DeckList extends Component {
 }
 
 const mapStateToProps = ({ decks }) => {
+  const deckList = _.values(decks);
+  const sortedDecks = _.sortBy(deckList, [deck => deck.title]);
   return {
-    decks: _.values(decks)
+    decks: sortedDecks
   };
 };
 export default withNavigation(connect(mapStateToProps)(DeckList));

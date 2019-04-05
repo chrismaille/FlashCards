@@ -7,6 +7,7 @@ import Swipeout from "react-native-swipeout";
 import { Frame } from "../styles/Frame";
 import { connect } from "react-redux";
 import { handleRemoveDeck } from "../actions/decks";
+import * as _ from "lodash";
 
 class DeckButton extends Component {
   onHandleDelete = () => {
@@ -26,7 +27,14 @@ class DeckButton extends Component {
     const { deck, navigation } = this.props;
     return (
       <Swipeout right={swipeOutButtons}>
-        <Frame onPress={() => navigation.navigate("Deck", { deck })}>
+        <Frame
+          onPress={() =>
+            navigation.navigate("Deck", {
+              deckKey: _.camelCase(deck.title),
+              deckTitle: deck.title
+            })
+          }
+        >
           <DeckTitle deck={deck} />
           <DeckSize deck={deck} />
         </Frame>

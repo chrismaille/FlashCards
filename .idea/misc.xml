@@ -8,4 +8,11 @@
       <item value="start" />
     </scripts>
   </component>
+  <component name="StyledComponentsInjections">
+    <option name="prefixes">
+      <array>
+        <option value="" />
+      </array>
+    </option>
+  </component>
 </project>
