@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { appStyles } from "../styles";
 import { Title } from "../styles/Title";
 import { withNavigation } from "react-navigation";
+import { clearLocalNotification, setLocalNotification } from "../notifications";
 
 export const QuizAnswer = styled.View`
   flex: 1;
@@ -34,6 +35,10 @@ class QuizResult extends Component {
         return `You hit ${score} Questions!`;
     }
   };
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
 
   render() {
     const { onPressRestart } = this.props;

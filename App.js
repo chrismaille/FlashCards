@@ -12,6 +12,7 @@ import AddDeck from "./src/views/AddDeck";
 import AddCard from "./src/views/AddCard";
 import Quiz from "./src/views/Quiz";
 import QuizResult from "./src/components/QuizResult";
+import { setLocalNotification } from "./src/notifications";
 
 const store = createStore(reducer, composeWithDevTools(middleware));
 
@@ -61,6 +62,11 @@ const AppNavigator = createAppContainer(Navigator);
 
 // noinspection JSUnusedGlobalSymbols
 export default class App extends React.Component {
+  componentDidMount() {
+    // noinspection JSIgnoredPromiseFromCall
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>
