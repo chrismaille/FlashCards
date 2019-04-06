@@ -20,8 +20,7 @@ class AddDeck extends React.Component {
     await dispatch(handleSaveDeck(decks, { title: value }));
     navigation.navigate("Deck", {
       deckKey: _.camelCase(value),
-      deckTitle: value,
-      onGoBack: () => this.refresh()
+      deckTitle: value
     });
   };
 
