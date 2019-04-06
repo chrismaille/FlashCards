@@ -5,6 +5,7 @@ import { QuizAnswer } from "./QuizResult";
 import { CorrectButton, IncorrectButton } from "./QuizButtons";
 import { AppButton } from "../styles/AppButton";
 import React, { Fragment } from "react";
+import { appStyles } from "../styles";
 
 export const QuizProgress = props => {
   const {
@@ -20,7 +21,7 @@ export const QuizProgress = props => {
   return (
     <Fragment>
       <QuizIcon current={current} total={total} />
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={appStyles.centerHorizontally}>
         <Question>{question}</Question>
         {showAnswer ? (
           <QuizAnswer>
@@ -29,14 +30,7 @@ export const QuizProgress = props => {
             <IncorrectButton onPress={onPressIncorrect} />
           </QuizAnswer>
         ) : (
-          <View
-            style={{
-              flex: 1,
-              padding: 8,
-              justifyContent: "center",
-              width: "100%"
-            }}
-          >
+          <View style={appStyles.buttonFrame}>
             <AppButton
               style={{ backgroundColor: "lightblue" }}
               onPress={() => onPressShowAnswer()}

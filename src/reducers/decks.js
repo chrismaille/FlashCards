@@ -5,13 +5,16 @@ export const decks = (state = null, action) => {
   switch (action.type) {
     case GET_DECKS:
       return action.decks;
+
     case ADD_DECK:
       return {
         ...state,
         ...action.deck
       };
+
     case REMOVE_DECK:
       return _.omit(state, [_.camelCase(action.deck.title)]);
+
     case ADD_CARD:
       const { answer, deck, question, decks } = action.card;
       const updatedDeck = {
@@ -22,6 +25,7 @@ export const decks = (state = null, action) => {
         ...decks,
         [_.camelCase(deck.title)]: updatedDeck
       };
+
     default:
       return state;
   }
