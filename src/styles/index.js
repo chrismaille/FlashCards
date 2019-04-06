@@ -20,6 +20,16 @@ export const appStyles = StyleSheet.create({
   submitBtn: {
     backgroundColor: "#5bb0f4",
     margin: 18
+  },
+  centerHorizontally: {
+    flex: 1,
+    alignItems: "center"
+  },
+  buttonFrame: {
+    flex: 1,
+    padding: 8,
+    justifyContent: "center",
+    width: "100%"
   }
 });
 

@@ -12,7 +12,7 @@ export const clearLocalNotification = async () => {
   }
 };
 
-export const createNotification = () => ({
+export const dontForgetNotification = {
   title: "Try a Quiz!",
   body: "👋 don't forget to Quiz Deck for today!",
   ios: {
@@ -24,7 +24,7 @@ export const createNotification = () => ({
     sticky: false,
     vibrate: true
   }
-});
+};
 
 export const setLocalNotification = async () => {
   const data = await AsyncStorage.getItem(NOTIFICATION_KEY);
@@ -39,7 +39,7 @@ export const setLocalNotification = async () => {
       tomorrow.setMinutes(0);
       try {
         await Notifications.scheduleLocalNotificationAsync(
-          createNotification(),
+          dontForgetNotification,
           {
             time: tomorrow,
             repeat: "day"

@@ -6,14 +6,13 @@ import { connect } from "react-redux";
 class DeckSize extends Component {
   render() {
     const { deckSize, style } = this.props;
-    switch (deckSize) {
-      case 0:
-        return <Title style={{ ...style }}>No cards</Title>;
-      case 1:
-        return <Title style={{ ...style }}>1 Card</Title>;
-      default:
-        return <Title style={{ ...style }}>{deckSize} Cards</Title>;
-    }
+    return (
+      <Title style={style}>
+        {deckSize === 0 && "No Cards"}
+        {deckSize === 1 && "1 Cards"}
+        {deckSize > 1 && `${deckSize} Cards`}
+      </Title>
+    );
   }
 }
 

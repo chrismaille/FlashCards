@@ -29,7 +29,7 @@ class QuizResult extends React.Component {
       case 0:
         return "You did not hit any questions. Try Again!";
       case 1:
-        return `You hit 1 Question!`;
+        return "You hit 1 Question!";
       default:
         return `You hit ${score} Questions!`;
     }

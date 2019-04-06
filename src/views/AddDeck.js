@@ -7,24 +7,29 @@ import { AppButton } from "../styles/AppButton";
 import { connect } from "react-redux";
 import { handleSaveDeck } from "../actions/decks";
 import { withNavigation } from "react-navigation";
+import * as _ from "lodash";
 
 class AddDeck extends React.Component {
   state = {
     value: ""
   };
 
-  onHandleSubmit = () => {
+  onHandleSubmit = async () => {
     const { decks, dispatch, navigation } = this.props;
     const { value } = this.state;
-    dispatch(handleSaveDeck(decks, { title: value })).then(() =>
-      navigation.goBack()
-    );
+    await dispatch(handleSaveDeck(decks, { title: value }));
+    navigation.navigate("Deck", {
+      deckKey: _.camelCase(value),
+      deckTitle: value,
+      onGoBack: () => this.refresh()
+    });
   };
 
   canSubmit = () => {
     const { decks } = this.props;
     return (
-      this.state.value !== "" && !Object.keys(decks).includes(this.state.value)
+      this.state.value !== "" &&
+      !Object.keys(decks).includes(_.camelCase(this.state.value))
     );
   };
 

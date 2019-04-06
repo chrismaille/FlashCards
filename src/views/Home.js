@@ -11,12 +11,10 @@ class Home extends React.Component {
     isLoading: true
   };
 
-  componentDidMount() {
-    this.props
-      .dispatch(handleInitialData())
-      .then(() =>
-        this.setState({ isLoading: false }, () => SplashScreen.hide())
-      );
+  async componentDidMount() {
+    const { dispatch } = this.props;
+    await dispatch(handleInitialData());
+    this.setState({ isLoading: false }, () => SplashScreen.hide());
   }
 
   render() {

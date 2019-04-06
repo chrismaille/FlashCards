@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { QuizProgress } from "../components/QuizProgress";
 import QuizResult from "../components/QuizResult";
 
-class Quiz extends React.Component {
+class Quiz extends React.PureComponent {
   state = {
     index: 0,
     showAnswer: false,
